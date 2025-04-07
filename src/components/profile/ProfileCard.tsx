@@ -1,28 +1,32 @@
 
 import React from 'react';
 import { Camera } from 'lucide-react';
+import { useAuth } from '../../contexts/AuthContext';
 
 const ProfileCard = () => {
-  const user = {
-    name: 'Alex Johnson',
-    age: 28,
-    gender: 'Male',
-    imageUrl: null // Placeholder for when user hasn't uploaded an image
+  const { user } = useAuth();
+  
+  // Get user information, defaulting to placeholders if not available
+  const userInfo = {
+    name: user?.user_metadata?.name || 'Fitness User',
+    age: user?.user_metadata?.age || 28,
+    gender: user?.user_metadata?.gender || 'Not specified',
+    imageUrl: user?.user_metadata?.avatar_url || null // Placeholder for when user hasn't uploaded an image
   };
 
   return (
     <div className="card flex items-center">
       <div className="relative mr-4">
         <div className="w-20 h-20 rounded-full bg-app-primary/20 flex items-center justify-center overflow-hidden">
-          {user.imageUrl ? (
+          {userInfo.imageUrl ? (
             <img 
-              src={user.imageUrl} 
-              alt={user.name} 
+              src={userInfo.imageUrl} 
+              alt={userInfo.name} 
               className="w-full h-full object-cover"
             />
           ) : (
             <span className="text-3xl font-medium text-app-primary">
-              {user.name.charAt(0)}
+              {userInfo.name.charAt(0)}
             </span>
           )}
         </div>
@@ -32,9 +36,12 @@ const ProfileCard = () => {
       </div>
       
       <div>
-        <h3 className="font-bold text-lg">{user.name}</h3>
+        <h3 className="font-bold text-lg">{userInfo.name}</h3>
         <div className="text-sm text-app-text/70">
-          {user.age} years • {user.gender}
+          {userInfo.age} years • {userInfo.gender}
+        </div>
+        <div className="text-xs text-app-text/50 mt-1">
+          {user?.email}
         </div>
       </div>
     </div>

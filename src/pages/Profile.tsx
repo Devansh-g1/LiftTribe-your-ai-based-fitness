@@ -1,9 +1,12 @@
 
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import MobileLayout from '../components/MobileLayout';
 import ProfileCard from '../components/profile/ProfileCard';
 import PreferenceSection, { PreferenceItem } from '../components/profile/PreferenceSection';
 import { Target, Dumbbell, UtensilsCrossed, Bell, RefreshCw, HelpCircle, LogOut } from 'lucide-react';
+import { useAuth } from '../contexts/AuthContext';
+import { useToast } from '../hooks/use-toast';
 
 const Profile = () => {
   const [notifications, setNotifications] = useState({
@@ -11,12 +14,36 @@ const Profile = () => {
     meal: true,
     water: false,
   });
+  const { signOut } = useAuth();
+  const navigate = useNavigate();
+  const { toast } = useToast();
 
   const toggleNotification = (type: keyof typeof notifications) => {
     setNotifications(prev => ({
       ...prev,
       [type]: !prev[type]
     }));
+  };
+
+  const handleLogout = async () => {
+    try {
+      const { error } = await signOut();
+      if (error) {
+        toast({
+          title: "Error signing out",
+          description: error.message,
+          variant: "destructive",
+        });
+      } else {
+        navigate('/login');
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "An unexpected error occurred",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -71,7 +98,7 @@ const Profile = () => {
         <PreferenceItem label="About & Support" onClick={() => {}} />
         <PreferenceItem 
           label="Log Out" 
-          onClick={() => {}}
+          onClick={handleLogout}
         />
       </PreferenceSection>
     </MobileLayout>
