@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -52,16 +53,14 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
-				}
+                // Custom colors for our fitness app
+                app: {
+                    text: '#ededed',
+                    background: '#0e101b',
+                    primary: '#795cfa',
+                    secondary: '#00dba8',
+                    accent: '#ff5c98',
+                }
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -84,11 +83,26 @@ export default {
 					to: {
 						height: '0'
 					}
-				}
+				},
+                'pulse-soft': {
+                    '0%, 100%': { opacity: '1' },
+                    '50%': { opacity: '0.8' },
+                },
+                'progress-fill': {
+                    '0%': { width: '0%' },
+                    '100%': { width: '100%' },
+                },
+                'bounce-soft': {
+                    '0%, 100%': { transform: 'translateY(0)' },
+                    '50%': { transform: 'translateY(-5px)' },
+                },
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+                'pulse-soft': 'pulse-soft 2s infinite',
+                'progress-fill': 'progress-fill 1s ease-out',
+                'bounce-soft': 'bounce-soft 2s infinite',
 			}
 		}
 	},
