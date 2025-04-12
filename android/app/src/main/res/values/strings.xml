@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">LiftTribe</string>
+    <string name="title_activity_main">LiftTribe</string>
+    <string name="package_name">com.example.LiftTribe</string>
+    <string name="custom_url_scheme">com.example.LiftTribe</string>
+</resources>

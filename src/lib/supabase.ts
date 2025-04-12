@@ -3,8 +3,8 @@ import { createClient } from '@supabase/supabase-js';
 
 // These are placeholder values - you'll need to replace these with your actual Supabase URL and anon key
 // after connecting your Lovable project to Supabase
-const supabaseUrl = 'YOUR_SUPABASE_URL';
-const supabaseAnonKey = 'YOUR_SUPABASE_ANON_KEY';
+const supabaseUrl = 'https://qxblsyfhiiwflcuqcepf.supabase.co';
+const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF4YmxzeWZoaWl3ZmxjdXFjZXBmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ0NDY2MDcsImV4cCI6MjA2MDAyMjYwN30.rf5ypmR_T2kFNJ_CGlCwEuwuzzecnfeTtPwV9kJQ4Zg';
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
