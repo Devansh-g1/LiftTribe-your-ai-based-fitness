@@ -11,7 +11,7 @@ const Signup = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const { signUp } = useAuth();
+  const { signUp, setIsNewUser } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -39,6 +39,7 @@ const Signup = () => {
           variant: "destructive",
         });
       } else {
+        setIsNewUser(true);
         toast({
           title: "Registration successful",
           description: "Please check your email to confirm your account",

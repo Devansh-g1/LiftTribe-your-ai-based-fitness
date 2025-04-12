@@ -1,8 +1,9 @@
 
 import React from 'react';
-
+import { useAuth } from '../../contexts/AuthContext';
 const WelcomeBanner = () => {
-  const userName = "Alex";
+  const { userProfile } = useAuth();
+  const userName = userProfile?.fullName || "User";
   const getTimeBasedGreeting = () => {
     const hour = new Date().getHours();
     if (hour < 12) return "Good morning";

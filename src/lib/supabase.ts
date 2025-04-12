@@ -34,3 +34,37 @@ export const getCurrentUser = async () => {
   const { data } = await supabase.auth.getUser();
   return data?.user;
 };
+export const generateWorkoutPlan = async (userProfile: any) => {
+  try {
+    // This would call a Supabase Edge Function that interfaces with the Groq API
+    const { data, error } = await supabase.functions.invoke('generate-workout-plan', {
+      body: { 
+        userProfile 
+      }
+    });
+    
+    if (error) throw error;
+    return data;
+  } catch (error) {
+    console.error('Error generating workout plan:', error);
+    throw error;
+  }
+};
+
+// Helper function to generate AI meal plan
+export const generateMealPlan = async (userProfile: any) => {
+  try {
+    // This would call a Supabase Edge Function that interfaces with the Groq API
+    const { data, error } = await supabase.functions.invoke('generate-meal-plan', {
+      body: { 
+        userProfile 
+      }
+    });
+    
+    if (error) throw error;
+    return data;
+  } catch (error) {
+    console.error('Error generating meal plan:', error);
+    throw error;
+  }
+};
