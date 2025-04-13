@@ -59,15 +59,17 @@ const ProfileSetup: React.FC = () => {
         created_at: new Date().toISOString()
       };
       
-      // Save to Supabase profiles table
+      console.log("Profile data being sent:", profileData);
+      
       const { error } = await supabase
-        .from('profiles')
+        .from('profile') // make sure this matches your DB table name
         .insert([profileData]);
       
       if (error) {
         console.error('Error creating profile:', error);
         throw error;
       }
+      
       
       console.log("Profile created successfully");
       
