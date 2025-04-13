@@ -62,7 +62,7 @@ const ProfileSetup: React.FC = () => {
       console.log("Profile data being sent:", profileData);
       
       const { error } = await supabase
-        .from('profile') // make sure this matches your DB table name
+        .from('profiles') // make sure this matches your DB table name
         .insert([profileData]);
       
       if (error) {
